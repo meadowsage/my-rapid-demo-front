@@ -73,7 +73,11 @@ export default {
     }
   },
   async created() {
-    const response = await fetch(`${process.env.baseUrl}/api/employees`)
+    const response = await fetch(`${process.env.baseUrl}/api/employees`, {
+      headers: {
+        Authorization: `Bearer ${process.env.apiKey}`
+      }
+    })
     if (response.ok) {
       this.employees = await response.json()
     } else {
